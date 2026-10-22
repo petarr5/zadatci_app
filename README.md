@@ -10,11 +10,12 @@
 - **Korišteni uređaj:** Android emulator 
 
 ## Odgovori na pitanja za provjeru razumijevanja
-# Objasnite zašto polja modela nisu promjenjiva i što bi se dogodilo da u JSON-u polje naslov nedostaje (as String na vrijednosti null).
+
+1. Objasnite zašto polja modela nisu promjenjiva i što bi se dogodilo da u JSON-u polje naslov nedostaje (as String na vrijednosti null).
 Ako naslov bude nedostajao on će biti null,a to će uzrokvati pogrešku kod pretvaranja u String.
-# Objasnite što se događa kad iznimku iz Futurea ne uhvatimo ni na jednom mjestu.
+2. ojasnite što se događa kad iznimku iz Futurea ne uhvatimo ni na jednom mjestu.
 Ako ne uhvatimo izniku sa try catchom onda će ona nastavi dalje obrađivati i može uzrokovati neobrađenu pogrešku, te prekinuti rad programa.
-# Objasnite zašto se Future stvara u polju, a ne u metodi build, i navedite tri stanja koja svaki zaslon s podacima mora prikazati.
+3. Objasnite zašto se Future stvara u polju, a ne u metodi build, i navedite tri stanja koja svaki zaslon s podacima mora prikazati.
 Stvara se u polju kako se ne bi pokretao svaki put kad napravimo neki novi build. Tri osnovna stanje su: učitavanje podataka, prikaz dohvaćenih podatak, javljanje pogreške ako se podaci ne mogu dohvatiti.
 
 ## Samostalne izmjene
