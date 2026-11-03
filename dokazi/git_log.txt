@@ -1,4 +1,0 @@
-d919535 Prikaz stanja i ListView
-434f191 Repozitorij s Future.delayed
-90b8dc3 Model Zadatak s fromJson
-b15004e Pocetni projekt

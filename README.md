@@ -3,7 +3,7 @@
 ## Osnovni podaci
 - **Ime i prezime:** Petar Vladić
 - **Kolegij:** Napredni razvoj aplikacija za mobilne uređaje
-- **Vježba:** Vježba 2 Asinkroni dohvat podataka Model, stanja učitavanja i prvi popis 
+- **Vježba:** Vježba 3 Forma, validacija i navigacija
 - **Operacijski sustav:** Windows 
 - **Flutter verzija:** Flutter 3.47.7 
 - **Dart verzija:** Dart SDK version: 3.13.5
