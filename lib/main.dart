@@ -29,9 +29,11 @@ final List<Zadatak> _zadaci = [];
 late Future<void> _ucitavanje = _ucitaj();
 Future<void> _ucitaj() async {
 final podaci = await _repo.dohvati();
+setState((){
 _zadaci
 ..clear()
 ..addAll(podaci);
+});
 }
 void _ponovi() {
 setState(() {
@@ -46,14 +48,14 @@ MaterialPageRoute(builder: (_) => FormaEkran(postojeci: _zadaci)),
 if (!mounted || novi == null) return;
 setState(() => _zadaci.add(novi));
 ScaffoldMessenger.of(
-context,
+context,  
 ).showSnackBar(SnackBar(content: Text('Dodano: ${novi.naslov}')));
 
 }
 @override
 Widget build(BuildContext context) {
 return Scaffold(
-appBar: AppBar(title: const Text('Zadatci')),
+appBar: AppBar(title: Text('Zadatci (${_zadaci.length})')),
 floatingActionButton: FloatingActionButton(
 onPressed: _dodaj,
 tooltip: 'Novi zadatak',

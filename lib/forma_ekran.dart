@@ -20,9 +20,12 @@ String? _provjeriNaslov(String? vrijednost) {
 final tekst = vrijednost?.trim() ?? '';
 if (tekst.isEmpty) return 'Unesite naslov';
 if (tekst.length < 3) return 'Naslov mora imati najmanje 3 znaka';
+if(tekst.length > 40) return 'Naslov ne smije biti duži od 40 znakova';
+if(tekst[0] != tekst[0].toUpperCase()) return 'Naslov mora početi velikim slovom';
+if (widget.postojeci.any((z) => z.naslov.toLowerCase() == tekst.toLowerCase())) return 'Zadatak s tim naslovom već postoji';
 return null;
 }
-void _spremi() {
+void _spremi() {  
 if (!_kljuc.currentState!.validate()) return;
 final noviId =
 widget.postojeci.fold<int>(
@@ -36,6 +39,9 @@ naslov: _naslov.text.trim(),
 zavrsen: _zavrsen,
 );
 Navigator.pop(context, zadatak);
+}
+void _odustani(){
+Navigator.pop(context);
 }
 @override
 Widget build(BuildContext context) {
@@ -68,6 +74,8 @@ contentPadding: EdgeInsets.zero,
 ),
 const SizedBox(height: 8),
 FilledButton(onPressed: _spremi, child: const Text('Spremi')),
+const SizedBox(height: 8),
+FilledButton(onPressed: _odustani, child: const Text('Odustani'))
 ],
 ),
 ),
