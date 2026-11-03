@@ -11,22 +11,21 @@
 
 ## Odgovori na pitanja za provjeru razumijevanja
 
-1. Objasnite zašto polja modela nisu promjenjiva i što bi se dogodilo da u JSON-u polje naslov nedostaje (as String na vrijednosti null).
-Ako naslov bude nedostajao on će biti null,a to će uzrokvati pogrešku kod pretvaranja u String.
-2. ojasnite što se događa kad iznimku iz Futurea ne uhvatimo ni na jednom mjestu.
-Ako ne uhvatimo izniku sa try catchom onda će ona nastavi dalje obrađivati i može uzrokovati neobrađenu pogrešku, te prekinuti rad programa.
-3. Objasnite zašto se Future stvara u polju, a ne u metodi build, i navedite tri stanja koja svaki zaslon s podacima mora prikazati.
-Stvara se u polju kako se ne bi pokretao svaki put kad napravimo neki novi build. Tri osnovna stanje su: učitavanje podataka, prikaz dohvaćenih podatak, javljanje pogreške ako se podaci ne mogu dohvatiti.
+1. Zašto je bolje zadati boju u temi nego na svakom widgetu?
+Zato što kada definiramo u temi odmah postavljamo to boju za sve ostale widgete.
+2. Objasnite što radi validate() i zašto validator vraća null za ispravan
+uno
+Validate provjera ispravnost polja u formi. U naše slučaju je to je li polje prazno ili ima manje od 3 znaka. 
+kada validator vraca null to znači da nije otkrio niti jednu pogrešku
+3. Objasnite zašto se nakon await Navigator.push provjerava
+mounted..
+sprjecava rušenje aplikacije i provjera je li widget akitvan prije nego li mijenjamo njegov sadržaj. 
 
-## Samostalne izmjene
-Tijekom vježbe provedene su sljedeće izmjene:
-1. dodan opis tipa String? i prilagođene sve metode i konstruktor
-2. u model_provjera dodan opis za samo jedan zadtak i ispsi za test
-3. repozitorij filea dodan dhovat Future.wait dvaput istovremeno i izmjerno trajanj preko Stopwatch
-4. dohvatu omotan s .timeout
-5. u main.dart dodan normaln ispis kod pogreške
-6. dodan ispis odrađenih zadataka
-7. dodan refresh indicator
+## Izmjena iz M1
+1. Dodano ograničenje naslovana 40 znakova
+2. Dodan zahjtev da naslov počinje velikim slovom
+3. Spiječen unos naslova koji već postoji
+
 
 
 
