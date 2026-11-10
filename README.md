@@ -3,7 +3,7 @@
 ## Osnovni podaci
 - **Ime i prezime:** Petar Vladić
 - **Kolegij:** Napredni razvoj aplikacija za mobilne uređaje
-- **Vježba:** Vježba 3 Forma, validacija i navigacija
+- **Vježba:** Vježba 4 MVVM i ChangeNotifier Refaktoriranje aplikacije Zadatci
 - **Operacijski sustav:** Windows 
 - **Flutter verzija:** Flutter 3.47.7 
 - **Dart verzija:** Dart SDK version: 3.13.5
@@ -11,20 +11,27 @@
 
 ## Odgovori na pitanja za provjeru razumijevanja
 
-1. Zašto je bolje zadati boju u temi nego na svakom widgetu?
-Zato što kada definiramo u temi odmah postavljamo to boju za sve ostale widgete.
-2. Objasnite što radi validate() i zašto validator vraća null za ispravan
-uno
-Validate provjera ispravnost polja u formi. U naše slučaju je to je li polje prazno ili ima manje od 3 znaka. 
-kada validator vraca null to znači da nije otkrio niti jednu pogrešku
-3. Objasnite zašto se nakon await Navigator.push provjerava
-mounted..
-sprjecava rušenje aplikacije i provjera je li widget akitvan prije nego li mijenjamo njegov sadržaj. 
+1. U README navedite tri stvari koje u vježbi 3 rade ekranu ne pripadaju
+(po obrascu MVVM) i u koji bi sloj ih premjestili.
 
-## Izmjena iz M1
-1. Dodano ograničenje naslovana 40 znakova
-2. Dodan zahjtev da naslov počinje velikim slovom
-3. Spiječen unos naslova koji već postoji
+Generiranje ID i upravljanje podatcima se odvija preko _spremi i widget.postojeci. Premjestiti u ViewModel, a ekranu omogućiti samo pozivanje metode.
+Upravljanje stanjem unosa i konrolerima sve treba prmjetit i VIewModel.
+Logia provjere se također treba smjesitit u ViewModel. Provejra veličine unosa ili praznog unosa.
+
+2. Što bi se dogodilo kad bi StatistikaEkran u svom initState stvorio novi ZadatciViewModel(ZadatakRepozitorij())
+
+Nastao bi novi, odvojeni ViewModel koji ne bi dijelio stanje s ekranom popisa. Zbog toga bi ekran statistike imao vlastiti popis zadataka, koji bi mogao biti prazan ili sadržavati početne podatke. Promjene napravljene na ekranu popisa ne bi bile vidljive u statistici. Zato oba ekrana moraju koristiti isti ViewModel.
+
+3. Zašto ViewModel izlaže UnmodifiableListView, a ne običnu listu i što bi moglo poći po zlu?
+
+Izlaže se kao UnmodifiableListView kako bi se zaštitili podatci i spriječilo da vanjski slojevi (ekrani i widgeti) izravno mijenjaju listu zadataka.
+UI bi mogao neovlašteno mijenjati podatke mimo poslovnih pravila, ne bi se pozivao notifyListeners, a sučelje i stanje bi postali nekonzistentni i izgubili reaktivnost.
+
+4. Što se dogodi s osvježavanjem ekrana ako u metodi promijeniZavrsen izostavite notifyListeners()?
+
+Sučelje se neće osvježiti. Podata će se u pozadini promijeniti, ali korisnik neće vidjeti promejne.
+
+
 
 
 
