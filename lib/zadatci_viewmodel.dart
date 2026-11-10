@@ -7,9 +7,17 @@ class ZadatciViewModel extends ChangeNotifier {
 final ZadatakRepozitorij _repo;
 ZadatciViewModel(this._repo);
 final List<Zadatak> _zadatci = [];
+bool _samoNezavrseni = false;
+bool get samoNezavrseni => _samoNezavrseni;
 Stanje _stanje = Stanje.ucitavanje;
 String _poruka = '';
 UnmodifiableListView<Zadatak> get zadatci => UnmodifiableListView(_zadatci);
+UnmodifiableListView<Zadatak> get noviZadatci {
+  if (!_samoNezavrseni) {
+    return UnmodifiableListView(_zadatci);
+  }
+  return UnmodifiableListView(_zadatci.where((z) => !z.zavrsen).toList());
+}
 Stanje get stanje => _stanje;
 String get poruka => _poruka;
 int get ukupno => _zadatci.length;
@@ -45,5 +53,15 @@ final i = _zadatci.indexWhere((z) => z.id == id);
 if (i == -1) return;
 _zadatci[i] = _zadatci[i].kopiraj(zavrsen: !_zadatci[i].zavrsen);
 notifyListeners();
+}
+void ukloni(int id){
+  final i= _zadatci.indexWhere((z)=>z.id==id);
+  if(i==-1)return;
+  _zadatci.remove(_zadatci[i]);
+  notifyListeners();
+}
+void postaviSamoNeZavrseni(bool vrijednost) {
+  _samoNezavrseni = vrijednost; 
+  notifyListeners();
 }
 }

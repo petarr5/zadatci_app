@@ -32,4 +32,12 @@ await vm.ucitaj();
 vm.promijeniZavrsen(3);
 expect(vm.zavrseno, 3);
 });
+test('ukloni smanjuje ukupni broj zadataka za jedan', () async {
+  final vm = ZadatciViewModel(ZadatakRepozitorij());
+  await vm.ucitaj();
+  final pocetniUkupno = vm.ukupno; 
+  vm.ukloni(3); 
+  expect(vm.ukupno, pocetniUkupno - 1);
+});
 }
+

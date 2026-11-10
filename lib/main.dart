@@ -59,6 +59,22 @@ return Scaffold(
 appBar: AppBar(
 title: const Text('Zadatci'),
 actions: [
+  ListenableBuilder(
+            listenable: _vm,
+            builder: (context, _) {
+              return Row(
+                children: [
+                  const Text('Samo nezavršeni', style: TextStyle(fontSize: 12)),
+                  Switch(
+                    value: _vm.samoNezavrseni,
+                    onChanged: (vrijednost) {
+                      _vm.postaviSamoNeZavrseni(vrijednost);
+                    },
+                  ),
+                ],
+              );
+            },
+          ),
 IconButton(
 onPressed: _otvoriStatistiku,
 tooltip: 'Statistika',
@@ -94,14 +110,21 @@ child: const Text('Pokušaj ponovno'),
 ),
 );
 case Stanje.uspjeh:
+if (_vm.noviZadatci.isEmpty) {
+                return const Center(child: Text('Nema zadataka'));
+        }
 if (_vm.zadatci.isEmpty) {
 return const Center(child: Text('Nema zadataka'));
 }
 return ListView.builder(
-itemCount: _vm.zadatci.length,
+itemCount: _vm.noviZadatci.length,
 itemBuilder: (context, i) {
-final z = _vm.zadatci[i];
-return CheckboxListTile(
+final z = _vm.noviZadatci[i];
+return Dismissible(
+background: Container(color: Colors.red),
+key: Key(z.id.toString()),
+onDismissed: (_) => _vm.ukloni(z.id),
+child: CheckboxListTile(
 value: z.zavrsen,
 onChanged: (_) => _vm.promijeniZavrsen(z.id),
 title: Text(
@@ -110,6 +133,7 @@ style: TextStyle(
 decoration: z.zavrsen ? TextDecoration.lineThrough : null,
 ),
 ),
+)
 );
 },
 );
