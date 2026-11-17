@@ -16,6 +16,7 @@
 
 1. Provjera razumijevanja 1: u README objasnite što je Always Free instanca i zašto za Supabase
 ne smijete odabrati Micro shape.
+    
     Always Free instca je besplatna usluga koji nam Orcacle nudi. Kao što je prsitup serverim, bazi podataka, virtualnim mašinama.
     Micor shape nećemo odabrati jer nema dovoljno jezgri i RAM memorije za našu Supabase uslugu.
 
